@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
@@ -267,7 +268,6 @@ export const ChatArea = ({ currentUser, selectedRoom, rooms, users }: ChatAreaPr
               onChange={(e) => handleTyping(e.target.value)}
               placeholder={`Message #${currentRoom?.name || 'chat'}`}
               className="pr-20"
-              multiline
             />
             <div className="absolute right-2 top-1/2 transform -translate-y-1/2 flex items-center gap-1">
               <Button type="button" size="sm" variant="ghost" className="h-8 w-8 p-0">
@@ -292,3 +292,4 @@ export const ChatArea = ({ currentUser, selectedRoom, rooms, users }: ChatAreaPr
     </div>
   );
 };
+
