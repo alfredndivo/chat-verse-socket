@@ -175,7 +175,7 @@ export const ChatArea = ({ currentUser, selectedRoom, rooms, users }: ChatAreaPr
   const handleReaction = (messageId: string, emoji: string) => {
     setMessages(prev => prev.map(msg => {
       if (msg.id === messageId) {
-        const reactions = { ...msg.reactions };
+        const reactions = { ...msg.reactions } || {};
         if (reactions[emoji]) {
           if (reactions[emoji].includes(currentUser.id)) {
             reactions[emoji] = reactions[emoji].filter(id => id !== currentUser.id);
@@ -192,6 +192,48 @@ export const ChatArea = ({ currentUser, selectedRoom, rooms, users }: ChatAreaPr
       }
       return msg;
     }));
+  };
+
+  const handleAttachmentClick = () => {
+    toast({
+      title: "Attachment",
+      description: "File attachment feature clicked",
+    });
+  };
+
+  const handleEmojiClick = () => {
+    toast({
+      title: "Emoji",
+      description: "Emoji selector opened",
+    });
+  };
+
+  const handleCallClick = () => {
+    toast({
+      title: "Call",
+      description: "Voice call feature initiated",
+    });
+  };
+
+  const handleVideoClick = () => {
+    toast({
+      title: "Video",
+      description: "Video call feature initiated",
+    });
+  };
+
+  const handlePinClick = () => {
+    toast({
+      title: "Pin",
+      description: "Pin message feature clicked",
+    });
+  };
+
+  const handleMoreClick = () => {
+    toast({
+      title: "More options",
+      description: "Additional options menu opened",
+    });
   };
 
   return (
@@ -217,16 +259,16 @@ export const ChatArea = ({ currentUser, selectedRoom, rooms, users }: ChatAreaPr
           </div>
           
           <div className="flex items-center gap-2">
-            <Button size="sm" variant="ghost">
+            <Button size="sm" variant="ghost" onClick={handleCallClick}>
               <Phone className="w-4 h-4" />
             </Button>
-            <Button size="sm" variant="ghost">
+            <Button size="sm" variant="ghost" onClick={handleVideoClick}>
               <Video className="w-4 h-4" />
             </Button>
-            <Button size="sm" variant="ghost">
+            <Button size="sm" variant="ghost" onClick={handlePinClick}>
               <Pin className="w-4 h-4" />
             </Button>
-            <Button size="sm" variant="ghost">
+            <Button size="sm" variant="ghost" onClick={handleMoreClick}>
               <MoreVertical className="w-4 h-4" />
             </Button>
           </div>
@@ -270,10 +312,10 @@ export const ChatArea = ({ currentUser, selectedRoom, rooms, users }: ChatAreaPr
               className="pr-20"
             />
             <div className="absolute right-2 top-1/2 transform -translate-y-1/2 flex items-center gap-1">
-              <Button type="button" size="sm" variant="ghost" className="h-8 w-8 p-0">
+              <Button type="button" size="sm" variant="ghost" className="h-8 w-8 p-0" onClick={handleAttachmentClick}>
                 <Paperclip className="w-4 h-4" />
               </Button>
-              <Button type="button" size="sm" variant="ghost" className="h-8 w-8 p-0">
+              <Button type="button" size="sm" variant="ghost" className="h-8 w-8 p-0" onClick={handleEmojiClick}>
                 <Smile className="w-4 h-4" />
               </Button>
             </div>
@@ -292,4 +334,3 @@ export const ChatArea = ({ currentUser, selectedRoom, rooms, users }: ChatAreaPr
     </div>
   );
 };
-
